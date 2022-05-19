@@ -1,7 +1,7 @@
 class param(object):
     def __init__(self):
         # Path
-        self.ROOT = 'Z:/2th_paper/temp_sets'
+        self.ROOT = '/content/drive/MyDrive/Colab Notebooks/[2]'
         self.DATASET_PATH = f'{self.ROOT}/gan-getting-started'
         self.OUTPUT_CKP = f'{self.ROOT}/train_temp/ckp'
         self.OUTPUT_SAMPLE = f'{self.ROOT}/train_temp/sampling'
