@@ -91,11 +91,11 @@ class Gen(nn.Module):
         return adj
 
     def forward(self, input):
-        x_1 = self.encoder_1(input)
-        x_2 = self.encoder_2(x_1)
-        x_3 = self.encoder_3(x_2)
+        x = self.encoder_1(input)
+        x = self.encoder_2(x)
+        x = self.encoder_3(x)
 
-        yin = self.downsample_graph(x_3)
+        yin = self.downsample_graph(x)
         yin = yin.permute(0,2,3,1)
         yin = yin.unsqueeze(4)
 
@@ -108,6 +108,16 @@ class Gen(nn.Module):
         res_g = res_g.squeeze(4)
         yout_g = res_g.permute(0, 3, 1, 2)
         yout_g = self.upsample_graph(yout_g)
+
+        yout_c = self.res_blocks(x)
+
+        x = yout_g + yout_c
+
+        x = self.decoder_1(x)
+        x = self.decoder_2(x)
+        x = self.decoder_3(x)
+
+        return x
 
         yout_c = self.res_blocks(x_3)
 
