@@ -118,18 +118,3 @@ class Gen(nn.Module):
         x = self.decoder_3(x)
 
         return x
-
-        yout_c = self.res_blocks(x_3)
-
-        x = yout_g + yout_c
-
-        x_out = x_1 + x
-        x_out_1 = self.decoder_1(x_out)
-        
-        x_out_2 = x_out_1 + x_2
-        x_out_3 = self.decoder_2(x)
-
-        x_out_3 = x_out_3 + x_3
-        x = self.decoder_3(x_out_3)
-
-        return x
